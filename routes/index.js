@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+var Form = require('../model/Form');
+
+router.get('/find/:id([0-9a-fA-F]{24})', async function(req, res, next) {
+  res.json(await Form.findById(req.params.id).exec());
 });
 
 module.exports = router;
